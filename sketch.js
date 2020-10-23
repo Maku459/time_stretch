@@ -12,10 +12,11 @@ function setup() {
   textSize(30);
   //textAlign(CENTER);
   fill(0, 0, 0);
-  animation = createVideo("Test.mp4");
+  animation = createVideo("all_1.mp4");
   animation.hide();
   //animation.loop();
-  //movie = createVideo("all_1.mp4");
+  movie = createVideo("Clock.mp4");
+  movie.hide();
   state = new TitleState();
 }
 function draw() {
@@ -36,7 +37,7 @@ class State {
  doState() {
    //background(204);
     const now = millis();
-    text(time_count + 's passed', 30, 30);
+    //text(time_count + 's passed', 30, 30);
     control_time = now - start_time;
     if (control_time >= oneSec) {
         time_count++;
@@ -207,10 +208,10 @@ class AnimationState extends State {
     text(" timeCountwitha : "+this.countwitha, width * 0.5, height * 0.9);
     text(" timewitha: "+timewitha[this.countwitha], width * 0.5, height * 1.0);
     //text("Animation (for 40 seconds)", width * 0.5, height * 0.5);
-    //this.playSpeed = abs(time[count]);
-    //animation.loop();
-    //animation.speed(this.playSpeed);
-    //image(animation, 0, 0, width, height);
+    this.playSpeed = abs(time[this.count]);
+    movie.loop();
+    movie.speed(this.playSpeed);
+    image(movie, 0, 30);
     if(time_count > this.sum_time) {
       this.sum_time += time[this.count];
       this.count++;
