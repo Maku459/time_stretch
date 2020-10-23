@@ -1,15 +1,22 @@
-let state, start_time, prev_time;
+let rippleSystem, state, start_time, prev_time;
 let control_time = 0;
 let time_count = 0;
 const oneSec = 1000;//1s
 const time = [];
 const timewitha = [];
 var animation, movie; //animation: while clicking movie:after clicking
+let font;
+//const ripples = [];
+
+function preload(){
+  font = loadFont("NotoSerifJP-ExtraLight.otf");
+}
 
 function setup() {
-  createCanvas(1280, 750);
-  textFont('Meiryo');
-  textSize(30);
+  createCanvas(windowWidth, windowHeight);
+  textFont(font);
+  //textFont("Meiryo");
+  textSize(20);
   //textAlign(CENTER);
   fill(0, 0, 0);
   animation = createVideo("all_1.mp4");
@@ -17,6 +24,7 @@ function setup() {
   //animation.loop();
   movie = createVideo("Clock.mp4");
   movie.hide();
+  //rippleSystem = new RippleSystem();
   state = new TitleState();
 }
 function draw() {
@@ -37,6 +45,7 @@ class State {
  doState() {
    //background(204);
     const now = millis();
+   //rippleSystem.render();
     //text(time_count + 's passed', 30, 30);
     control_time = now - start_time;
     if (control_time >= oneSec) {
@@ -48,7 +57,11 @@ class State {
  }
  mousePressed(){
    this.domousePressed();
+   //rippleSystem.ripples.add(new Ripple(mouseX, mouseY));
  }
+}
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 /////State1/////////////////////////////
@@ -60,10 +73,10 @@ class TitleState extends State {
   }
   drawState(){
     //super.doState();
-    text("伸縮する時間へようこそ", 30, 210);
-    text("まずはあなたの１秒がどのくらい正確なのか感じてみましょう", 30, 240);
-    text("これからの５秒間，１秒ごとにマウスをクリックしてみてください", 30, 270);
-    text("それではマウスをクリックしてスタート！", 30, 300);
+    text("伸縮する時間へようこそ", 30, windowHeight*0.3);
+    text("まずはあなたの１秒がどのくらい正確なのか感じてみましょう", 30, windowHeight*0.3+50);
+    text("これからの５秒間，１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+80);
+    text("それではマウスをクリックしてスタート！", 30, windowHeight*0.3+110);
   }
   domousePressed(){
     this.clicked = true;
@@ -120,10 +133,10 @@ class TitleState_2 extends State {
   }
   drawState(){
     //super.doState();
-    text("お疲れさまでした", 30, 210);
-    text("それでは今度はアニメーションを見ながら", 30, 240);
-    text("１秒ごとにマウスをクリックしてみてください", 30, 270);
-    text("それではマウスをクリックしてよーいスタート！", 30, 300);
+    text("お疲れさまでした", 30, windowHeight*0.3);
+    text("それでは今度はアニメーションを見ながら", 30, windowHeight*0.3+30);
+    text("１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+60);
+    text("それではマウスをクリックしてよーいスタート！", 30, windowHeight*0.3+110);
   }
   domousePressed(){
     this.clicked = true;
@@ -176,9 +189,9 @@ class TitleState_3 extends State {
   }
   drawState(){
     //super.doState();
-    text("お疲れさまでした", 30, 210);
-    text("最後に刻んだ最初の１秒，アニメーションを見ながらの１秒，正確な１秒を見比べてみましょう", 30, 240);
-    text("それではマウスをクリックしてレッツゴー => ", 30, 270);
+    text("お疲れさまでした", 30, windowHeight*0.3);
+    text("最後に刻んだ最初の１秒，アニメーションを見ながらの１秒，正確な１秒を見比べてみましょう", 30, windowHeight*0.3+30);
+    text("それではマウスをクリックしてレッツゴー => ", 30, windowHeight*0.3+70);
   }
   domousePressed(){
     this.clicked = true;
@@ -231,12 +244,12 @@ class AnimationState extends State {
   }
 }
 
-/////State5/////////////////////////////
+/////State7/////////////////////////////
 //最後
 class EndingState extends State {
   drawState() {
-    text("１秒，正確に刻めていましたか？", 30, 210);
-    text("時間の伸縮を感じていただけたら幸いです", 30, 240);
+    text("１秒，正確に刻めていましたか？", 30, h*0.3);
+    text("時間の伸縮を感じていただけたら幸いです", 30, h*0.3+30);
     // if (time_count > 3) {
     //   text("Press 'a' to restart.", width * 0.5, height * 0.7);
     // }
@@ -249,3 +262,52 @@ class EndingState extends State {
     return this;
   }
 }
+
+
+
+/////RippleSystem/////////////////////////////
+// class RippleSystem {
+//   ArrayList<Ripple> ripples;
+//   RippleSystem() {
+//     ripples;
+//      ripples = new ArrayList<Ripple>();
+//   }
+//   render() {
+//     ArrayList<Ripple> removes = new ArrayList<Ripple>();
+//     for (Ripple ripple : ripples) {
+//       ripple.update();
+//       ripple.draw();
+//       if (ripple.isBordered) {
+//         removes.add(ripple);
+//       }
+//     }
+//     for (Ripple removeRipple : removes) {
+//       ripples.remove(removeRipple);
+//     }
+//   }
+// }
+// class Ripple {
+//   PVector pos;
+//   float diameter = 0;
+//   float inc = 10;
+//   float transparent = 100;
+//   boolean isBordered = false;
+//   float hue = random(180,240);
+//   Ripple(float x, float y) {
+//     pos = new PVector(x, y);
+//   }
+//   void update() {
+//     diameter += inc;
+//     transparent -= 1;
+//     if (diameter > sqrt(sq(width*2)+sq(height*2))) {
+//       isBordered = true;
+//     }
+//   }
+//   void draw() {
+//     noFill();
+//     strokeWeight(5);
+//     stroke(hue, 80, 100, transparent);
+//     ellipse(pos.x, pos.y, diameter, diameter);
+//   }
+// }
+
