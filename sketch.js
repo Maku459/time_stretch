@@ -75,7 +75,7 @@ class TitleState extends State {
     //super.doState();
     text("伸縮する時間へようこそ", 30, windowHeight*0.3);
     text("まずはあなたの１秒がどのくらい正確なのか感じてみましょう", 30, windowHeight*0.3+50);
-    text("これからの５秒間，１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+80);
+    text("これからの４０秒間，１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+80);
     text("それではマウスをクリックしてスタート！", 30, windowHeight*0.3+110);
   }
   domousePressed(){
@@ -116,7 +116,7 @@ class ClickState1 extends State {
     prev_time = millis();
   }
   decideState(){
-    if (time_count > 5) { // if ellapsed time is larger than
+    if (time_count > 40) { // if ellapsed time is larger than
       time[this.count] = abs(5.00 - prev_time)/1000;
       return new TitleState_2(); 
     } 
@@ -172,7 +172,7 @@ class ClickState2 extends State {
     prev_time = millis();
   }
   decideState() {
-    if (time_count > 5) { // if ellapsed time is larger than
+    if (time_count > 40) { // if ellapsed time is larger than
       timewitha[this.count] = abs(5.00 - prev_time) / 1000;
       return new TitleState_3(); 
     }
@@ -237,7 +237,7 @@ class AnimationState extends State {
   domousePressed() {
   }
   decideState() {
-    if (time_count > 5) { // if ellapsed time is larger than
+    if (time_count > 40) { // if ellapsed time is larger than
       return new EndingState(); // go to ending
     }
     return this;
@@ -256,7 +256,7 @@ class EndingState extends State {
   }
   domousePressed() {}
   decideState() {
-    if (count_time > 3 && keyPressed && key == 'a') {
+    if (count_time > 40 && keyPressed && key == 'a') {
       return new EndingState();
     }
     return this;
