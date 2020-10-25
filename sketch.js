@@ -6,6 +6,7 @@ const time = [];
 const timewitha = [];
 var animation, movie; //animation: while clicking movie:after clicking
 let font;
+let time_length;
 //const ripples = [];
 
 function preload(){
@@ -19,6 +20,7 @@ function setup() {
   textSize(20);
   //textAlign(CENTER);
   fill(0, 0, 0);
+  time_length = 5.00;
   animation = createVideo("all_1.mp4");
   animation.hide();
   //animation.loop();
@@ -65,7 +67,7 @@ class State {
  }
 }
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowWidth*720/1280);
 }
 
 /////State1/////////////////////////////
@@ -77,7 +79,7 @@ class TitleState extends State {
   }
   drawState(){
     //super.doState();
-    text("伸縮する時間へようこそ", 30, windowHeight*0.3);
+    text("伸縮する時間へようこそ1312", 30, windowHeight*0.3);
     text("まずはあなたの１秒がどのくらい正確なのか感じてみましょう", 30, windowHeight*0.3+50);
     text("これからの１０秒間，１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+80);
     text("それではマウスをクリックしてスタート！", 30, windowHeight*0.3+110);
@@ -120,8 +122,8 @@ class ClickState1 extends State {
     prev_time = millis();
   }
   decideState(){
-    if (time_count > 10) { // if ellapsed time is larger than
-      time[this.count] = abs(5.00 - prev_time)/1000;
+    if (time_count > time_length) { // if ellapsed time is larger than
+      time[this.count] = abs(time_length - prev_time)/1000;
       return new TitleState_2(); 
     } 
     return this;
@@ -176,8 +178,8 @@ class ClickState2 extends State {
     prev_time = millis();
   }
   decideState() {
-    if (time_count > 10) { // if ellapsed time is larger than
-      timewitha[this.count] = abs(5.00 - prev_time) / 1000;
+    if (time_count > time_length) { // if ellapsed time is larger than
+      timewitha[this.count] = abs(time_length - prev_time) / 1000;
       return new TitleState_3(); 
     }
     return this;
@@ -241,7 +243,7 @@ class AnimationState extends State {
   domousePressed() {
   }
   decideState() {
-    if (time_count > 40) { // if ellapsed time is larger than
+    if (time_count > time_length) { // if ellapsed time is larger than
       return new EndingState(); // go to ending
     }
     return this;
