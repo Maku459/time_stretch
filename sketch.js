@@ -5,8 +5,9 @@ const oneSec = 1000;//1s
 const time = [];
 const timewitha = [];
 var animation, movie; //animation: while clicking movie:after clicking
-let font;
+let font, button;
 let time_length;
+let nowState = 0;
 //const ripples = [];
 
 function preload(){
@@ -21,12 +22,15 @@ function setup() {
   //textAlign(CENTER);
   fill(0, 0, 0);
   time_length = 5.00;
+  
   animation = createVideo("all_1.mp4");
   animation.hide();
-  //animation.loop();
+  // animation = createVideo("Test.mp4");
+  // animation.hide();
   movie = createVideo("Clock.mp4");
   movie.hide();
   //rippleSystem = new RippleSystem();
+  
   state = new TitleState();
 }
 function draw() {
@@ -37,10 +41,6 @@ function mousePressed(){
   state.mousePressed();
 }
 
-function videoLoaded(){
-  animation.size(windowWidth, windowHeight);
-  movie.size(windowWidth, windowHeight);
-}
 
 /////State/////////////////////////////
 class State {
@@ -49,9 +49,9 @@ class State {
    time_count = 0;
  }
  doState() {
-   //background(204);
+    //background(204);
     const now = millis();
-   //rippleSystem.render();
+    //rippleSystem.render();
     //text(time_count + 's passed', 30, 30);
     control_time = now - start_time;
     if (control_time >= oneSec) {
@@ -67,7 +67,7 @@ class State {
  }
 }
 function windowResized() {
-  resizeCanvas(windowWidth, windowWidth*720/1280);
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 /////State1/////////////////////////////
@@ -76,16 +76,24 @@ class TitleState extends State {
   constructor(){
     super();
     this.clicked = false;
+    
+    button = createButton('次へ');
+    button.position(windowWidth*0.8, windowHeight*0.8);
+    button.style("width", "120px");
+    button.style("height", "70px");
+    button.style("border-radius", "5px");
+    button.style("font-size", "24px");
   }
   drawState(){
     //super.doState();
     text("伸縮する時間へようこそ1312", 30, windowHeight*0.3);
     text("まずはあなたの１秒がどのくらい正確なのか感じてみましょう", 30, windowHeight*0.3+50);
     text("これからの１０秒間，１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+80);
-    text("それではマウスをクリックしてスタート！", 30, windowHeight*0.3+110);
+    text("それでは[次へ]をダブルクリックしてスタート！", 30, windowHeight*0.3+110);
+    
   }
   domousePressed(){
-    this.clicked = true;
+    button.mousePressed(()  => this.clicked = true);
   }
   decideState() {
     if (this.clicked) {
@@ -93,7 +101,42 @@ class TitleState extends State {
         time[i] = 0.0;
         timewitha[i] = 0.0;
       }
-      return new ClickState1(); //new ClickState1();
+      button.hide();
+      return new CountDownState(); //new ClickState1();
+    }
+    return this;
+  }
+}
+
+/////State1'/////////////////////////////
+//Count Down
+class CountDownState extends State {
+  constructor(){
+    super();
+    this.clicked = false;
+  }
+  drawState(){
+    textSize(140);
+    if(time_count < 1){
+      text("３", windowWidth*0.5, windowHeight*0.6);
+    }
+    else if(time_count < 2){
+      text("２", windowWidth*0.5, windowHeight*0.6);
+    }
+    else if(time_count < 3){
+      text("１", windowWidth*0.5, windowHeight*0.6);
+    }
+  }
+  domousePressed(){
+  }
+  decideState() {
+    if (time_count > 2.99) {
+      if(nowState == 0){
+        return new ClickState1(); //new ClickState1();
+      }
+      else if(nowState == 3){
+        return new ClickState2();
+      }
     }
     return this;
   }
@@ -108,12 +151,10 @@ class ClickState1 extends State {
     this.count = 0;
   }
   drawState(){
-    //super.doState();
+    textSize(140);
+    text("クリック", windowWidth*0.5, windowHeight*0.6);
+    textSize(20);
     text("１秒ごとにマウスをクリックしてくださいね〜その調子その調子", 30, 30);
-    //text("その調子その調子", 30, 240);
-    // if(this.count > 0){
-    //   text("count: "+this.count+" time: "+time[this.count-1], 240, 240);
-    // }
   }
   domousePressed(){
     const now = millis();
@@ -136,20 +177,29 @@ class TitleState_2 extends State {
   constructor(){
     super();
     this.clicked = false;
+    
+    button = createButton('次へ');
+    button.position(windowWidth*0.8, windowHeight*0.8);
+    button.style("width", "120px");
+    button.style("height", "70px");
+    button.style("border-radius", "5px");
+    button.style("font-size", "24px");
   }
   drawState(){
     //super.doState();
     text("お疲れさまでした", 30, windowHeight*0.3);
     text("それでは今度はアニメーションを見ながら", 30, windowHeight*0.3+30);
     text("１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+60);
-    text("それではマウスをクリックしてよーいスタート！", 30, windowHeight*0.3+110);
+    text("それでは[次へ]をダブルクリックしてよーいスタート！", 30, windowHeight*0.3+110);
   }
   domousePressed(){
-    this.clicked = true;
+    button.mousePressed(()  => this.clicked = true);
   }
   decideState() {
     if (this.clicked) {
-      return new ClickState2(); //new ClickState1();
+      button.hide();
+      nowState = 3;
+      return new CountDownState(); //new ClickState1();
     }
     return this;
   }
@@ -164,12 +214,13 @@ class ClickState2 extends State {
     this.count = 0;
   }
   drawState() {
+    textSize(20);
     text("１秒ごとにマウスをクリックしてくださいね〜その調子その調子", 30, 30);
     // if (this.count > 0) {
     //   text("count: " + this.count + " time: " + timewitha[this.count - 1], width * 0.5, height * 0.7);
     // }
     animation.loop();
-    image(animation, 0, 30);
+    image(animation, 0, 50, width, height-50);
   }
   domousePressed() {
     const now = millis();
@@ -192,18 +243,26 @@ class TitleState_3 extends State {
   constructor(){
     super();
     this.clicked = false;
+    
+    button = createButton('次へ');
+    button.position(windowWidth*0.8, windowHeight*0.8);
+    button.style("width", "120px");
+    button.style("height", "70px");
+    button.style("border-radius", "5px");
+    button.style("font-size", "24px");
   }
   drawState(){
     //super.doState();
     text("お疲れさまでした", 30, windowHeight*0.3);
     text("最後に刻んだ最初の１秒，アニメーションを見ながらの１秒，正確な１秒を見比べてみましょう", 30, windowHeight*0.3+30);
-    text("それではマウスをクリックしてレッツゴー => ", 30, windowHeight*0.3+70);
+    text("それでは[次へ]をダブルクリックしてレッツゴー => ", 30, windowHeight*0.3+70);
   }
   domousePressed(){
-    this.clicked = true;
+    button.mousePressed(()  => this.clicked = true);
   }
   decideState() {
     if (this.clicked) {
+      button.hide();
       return new AnimationState(); //new ClickState1();
     }
     return this;
@@ -230,7 +289,7 @@ class AnimationState extends State {
     this.playSpeed = abs(time[this.count]);
     movie.loop();
     movie.speed(this.playSpeed);
-    image(movie, 0, 30);
+    image(movie, 0, 50, width, height-50);
     if(time_count > this.sum_time) {
       this.sum_time += time[this.count];
       this.count++;
