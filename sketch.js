@@ -152,7 +152,7 @@ class ClickState1 extends State {
   }
   drawState(){
     textSize(140);
-    text("クリック", windowWidth*0.5, windowHeight*0.6);
+    text("クリック", windowWidth*0.4, windowHeight*0.6);
     textSize(20);
     text("１秒ごとにマウスをクリックしてくださいね〜その調子その調子", 30, 30);
   }
@@ -229,7 +229,7 @@ class ClickState2 extends State {
     prev_time = millis();
   }
   decideState() {
-    if (time_count > time_length) { // if ellapsed time is larger than
+    if (time_count > 40) { // if ellapsed time is larger than
       timewitha[this.count] = abs(time_length - prev_time) / 1000;
       return new TitleState_3(); 
     }
