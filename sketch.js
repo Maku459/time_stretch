@@ -35,6 +35,10 @@ function mousePressed(){
   state.mousePressed();
 }
 
+function videoLoaded(){
+  animation.size(windowWidth, windowHeight);
+  movie.size(windowWidth, windowHeight);
+}
 
 /////State/////////////////////////////
 class State {
