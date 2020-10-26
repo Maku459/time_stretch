@@ -86,7 +86,7 @@ class TitleState extends State {
   }
   drawState(){
     //super.doState();
-    text("伸縮する時間へようこそ1151", 30, windowHeight*0.3);
+    text("伸縮する時間へようこそ1201", 30, windowHeight*0.3);
     text("まずはあなたの１秒がどのくらい正確なのか感じてみましょう", 30, windowHeight*0.3+50);
     text("これからの１０秒間，１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+80);
     text("それでは[次へ]をダブルクリックしてスタート！", 30, windowHeight*0.3+110);
