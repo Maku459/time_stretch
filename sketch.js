@@ -25,8 +25,8 @@ function setup() {
   
   animation = createVideo("all.mp4");
   animation.hide();
-   // animation = createVideo("Test.mp4");
-   // animation.hide();
+    animation = createVideo("Test.mp4");
+    animation.hide();
   movie = createVideo("Hourglass.mp4");
   movie.hide();
   //rippleSystem = new RippleSystem();
@@ -86,7 +86,7 @@ class TitleState extends State {
   }
   drawState(){
     //super.doState();
-    text("伸縮する時間へようこそ1201", 30, windowHeight*0.3);
+    text("伸縮する時間へようこそ1221", 30, windowHeight*0.3);
     text("まずはあなたの１秒がどのくらい正確なのか感じてみましょう", 30, windowHeight*0.3+50);
     text("これからの１０秒間，１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+80);
     text("それでは[次へ]をダブルクリックしてスタート！", 30, windowHeight*0.3+110);
@@ -286,10 +286,10 @@ class AnimationState extends State {
     text(" timeCountwitha : "+this.countwitha, width * 0.5, height * 0.9);
     text(" timewitha: "+timewitha[this.countwitha], width * 0.5, height * 1.0);
     //text("Animation (for 40 seconds)", width * 0.5, height * 0.5);
-    this.playSpeed = abs(time[this.count]);
-    movie.loop();
-    movie.speed(this.playSpeed);
-    image(movie, 0, 50, width, height-50);
+    //this.playSpeed = abs(time[this.count]);
+    //movie.loop();
+    //movie.speed(this.playSpeed);
+    //image(movie, 0, 50, width, height-50);
     if(time_count > this.sum_time) {
       this.sum_time += time[this.count];
       this.count++;
@@ -324,9 +324,6 @@ class EndingState extends State {
   }
   domousePressed() {}
   decideState() {
-    if (count_time > 40 && keyPressed && key == 'a') {
-      return new EndingState();
-    }
     return this;
   }
 }
