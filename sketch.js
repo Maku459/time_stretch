@@ -25,8 +25,8 @@ function setup() {
   
   animation = createVideo("all.mp4");
   animation.hide();
-  // animation = createVideo("Test.mp4");
-  // animation.hide();
+   // animation = createVideo("Test.mp4");
+   // animation.hide();
   movie = createVideo("Hourglass.mp4");
   movie.hide();
   //rippleSystem = new RippleSystem();
@@ -312,9 +312,12 @@ class AnimationState extends State {
 /////State7/////////////////////////////
 //最後
 class EndingState extends State {
+  constructor(){
+    super();
+  }
   drawState() {
-    text("１秒，正確に刻めていましたか？", 30, h*0.3);
-    text("時間の伸縮を感じていただけたら幸いです", 30, h*0.3+30);
+    text("１秒，正確に刻めていましたか？", 30, windowHeight*0.3);
+    text("時間の伸縮を感じていただけたら幸いです", 30, windowHeight*0.3+30);
     // if (time_count > 3) {
     //   text("Press 'a' to restart.", width * 0.5, height * 0.7);
     // }
