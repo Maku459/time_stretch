@@ -23,11 +23,11 @@ function setup() {
   fill(0, 0, 0);
   time_length = 5.00;
   
-  animation = createVideo("all_1.mp4");
+  animation = createVideo("all.mp4");
   animation.hide();
   // animation = createVideo("Test.mp4");
   // animation.hide();
-  movie = createVideo("Clock.mp4");
+  movie = createVideo("Hourglass.mp4");
   movie.hide();
   //rippleSystem = new RippleSystem();
   
@@ -86,7 +86,7 @@ class TitleState extends State {
   }
   drawState(){
     //super.doState();
-    text("伸縮する時間へようこそ1312", 30, windowHeight*0.3);
+    text("伸縮する時間へようこそ1151", 30, windowHeight*0.3);
     text("まずはあなたの１秒がどのくらい正確なのか感じてみましょう", 30, windowHeight*0.3+50);
     text("これからの１０秒間，１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+80);
     text("それでは[次へ]をダブルクリックしてスタート！", 30, windowHeight*0.3+110);
@@ -229,7 +229,7 @@ class ClickState2 extends State {
     prev_time = millis();
   }
   decideState() {
-    if (time_count > 40) { // if ellapsed time is larger than
+    if (time_count > 51.9) { // if ellapsed time is larger than
       timewitha[this.count] = abs(time_length - prev_time) / 1000;
       return new TitleState_3(); 
     }
