@@ -25,8 +25,8 @@ function setup() {
   
   animation = createVideo("all.mp4");
   animation.hide();
-    animation = createVideo("Test.mp4");
-    animation.hide();
+    // animation = createVideo("Test.mp4");
+    // animation.hide();
   movie = createVideo("Hourglass.mp4");
   movie.hide();
   //rippleSystem = new RippleSystem();
@@ -86,7 +86,7 @@ class TitleState extends State {
   }
   drawState(){
     //super.doState();
-    text("伸縮する時間へようこそ1221", 30, windowHeight*0.3);
+    text("伸縮する時間へようこそ1231", 30, windowHeight*0.3);
     text("まずはあなたの１秒がどのくらい正確なのか感じてみましょう", 30, windowHeight*0.3+50);
     text("これからの１０秒間，１秒ごとにマウスをクリックしてみてください", 30, windowHeight*0.3+80);
     text("それでは[次へ]をダブルクリックしてスタート！", 30, windowHeight*0.3+110);
