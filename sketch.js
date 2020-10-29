@@ -158,9 +158,10 @@ class SettingState extends State {
       text("ここは時計の中です。", 0, windowHeight*0.35, width);
       text("あなたが刻む1クリックが、この時計の1秒となります。", 0, windowHeight*0.45, width);
       text("それでは早速、画面をクリックしてクリック音を確認してください。", 0, windowHeight*0.55, width);
+      text("※音量はご自身で調節ください。", 0, windowHeight*0.55+30, width);
     }
     if(time_count > 7.99){
-      text("スペースキーを押して次へ行く", 0, windowHeight*0.75, width);
+      text("スペースキーを押して次へ行く", 0, windowHeight*0.8, width);
     }
   }
   domousePressed(){
@@ -247,7 +248,7 @@ class ClickState extends State {
     prev_time = millis();
   }
   decideState() {
-    if (time_count > 9.9) { // if ellapsed time is larger than
+    if (time_count > 41.99) { // if ellapsed time is larger than
       //timewitha[this.count] = abs(time_length - prev_time) / 1000;
       animation.stop();
       return new TitleState_3(); 
@@ -267,8 +268,8 @@ class TitleState_3 extends State {
     text("お疲れさまでした。", 0, windowHeight*0.3, width);
     text("最後にあなたの1秒を可視化していきましょう。", 0, windowHeight*0.4, width);
     text("上から流れる白い砂があなたの刻みです。", 0, windowHeight*0.5, width);
-    text("色のついた砂より太かったら刻んだ1秒が短く、", 0, windowHeight*0.6, width); 
-    text("細かったら刻んだ1秒が長かったということです。", 0, windowHeight*0.7, width);
+    text("色のついた砂より太かったら刻んだ1秒が短く、細かったら刻んだ1秒が長かったということです。", 0, windowHeight*0.6, width); 
+    //text("細かったら刻んだ1秒が長かったということです。", 0, windowHeight*0.7, width);
   }
   domousePressed(){
   }
@@ -344,7 +345,7 @@ class AnimationState extends State {
   domousePressed() {
   }
   decideState() {
-    if (time_count > 10) { // if ellapsed time is larger than
+    if (time_count > 41.99) { // if ellapsed time is larger than
       animation.stop();
       return new EndingState(); // go to ending
     }
@@ -363,15 +364,15 @@ class EndingState extends State {
     if(time_count < 3.99){
       
     }
-    else if(time_count < 13.00){
+    else if(time_count < 13.99){
       text("正確な1秒を刻めていましたか？", 0, windowHeight*0.35, width);
       text("時間は様々な要因によって変化します。", 0, windowHeight*0.45, width);
       text("少しでもその『伸縮』を感じていただけたら幸いです。", 0, windowHeight*0.55, width);
     }
-    else if(time_count < 12.00){
+    else if(time_count < 15.00){
       
     }
-    else if(time_count < 16.00){
+    else if(time_count < 19.00){
       text("『伸縮する時間』", 0, windowHeight*0.3, width);
       text("稲田栞里 佐久間響子 菊池知世", 0, windowHeight*0.45, width);
     }
