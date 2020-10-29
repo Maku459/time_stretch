@@ -295,9 +295,9 @@ class AnimationState extends State {
     animation.loop();
     image(animation, width*0.6, height*0.1, 128*3, 72*3);
     //tint(255, 127);
-    this.nowW = 0.1/timewitha[this.count];
-    this.sW = windowWidth*(0.35 - this.nowW);
-    this.eW = windowWidth*(0.35 + this.nowW);
+    this.nowW = 0.05/timewitha[this.count];
+    this.sW = windowWidth*(0.35 - 2*this.nowW);
+    this.eW = windowWidth*(0.35 + 2*this.nowW);
     // for(let h=0; h<=0.00333*draw_count*windowHeight; h+=15){
     //   //text(timewitha[this.count], windowWidth*0.5, 50);
     //   this.nowW = 0.1/timewitha[this.count];
