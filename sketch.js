@@ -104,7 +104,7 @@ class TitleState extends State {
     fill(0);
     //super.doState();
     if(time_count<3.0){
-      text("時間は一定に流れている ―", 0, windowHeight*0.5, width);
+      text("時間は一定に流れている ―2", 0, windowHeight*0.5, width);
     }
     else if(time_count > 3.0){
       text("それは本当でしょうか。", 0, windowHeight*0.45, width);
