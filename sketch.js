@@ -31,8 +31,8 @@ function setup() {
   op.hide();
   ed = createVideo("ED.mp4");
   ed.hide();
-    // animation = createVideo("Test.mp4");
-    // animation.hide();
+    //animation = createVideo("Test.mp4");
+    //animation.hide();
   
   sound0 = loadSound("Click1.mp3");
   sound1 = loadSound("Click2.mp3");
@@ -312,8 +312,8 @@ class AnimationState extends State {
     //     ellipse(w, h, 10, 10);
     //   }
     // }
-    this.exactsW = windowWidth*0.25;
-    this.exacteW = windowWidth*0.45;
+    this.exactsW = windowWidth*0.3;
+    this.exacteW = windowWidth*0.4;
     colorMode(HSB, 360);
     for(let num = 0; num < 4; num++){
       this.w = random(this.sW, this.eW);
@@ -383,19 +383,23 @@ class EndingState extends State {
     }
     else if(time_count < 20.00){
     }
-    else if(time_count < 24.00){
-      text("おわり", 0, windowHeight*0.5, width);
-    }
-    else{
+    else if(time_count < 28.00){
       ed.loop();
       image(ed, 0, 0, width, height);
     }
-    
+    else if(time_count < 29.00){
+      
+    }
+    else{
+      ed.stop();
+      background(255);
+      fill(0);
+      text("おわり", 0, windowHeight*0.5, width);
+    }
   }
   domousePressed() {
   }
   decideState() {
-    ed.stop();
     return this;
   }
 }
