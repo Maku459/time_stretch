@@ -4,7 +4,7 @@ let time_count = 0;
 const oneSec = 1000;//1s
 let timewitha = [];
 
-var animation, sound0, sound1; 
+var animation, op, ed, sound0, sound1; 
 
 let font, button;
 let time_length;
@@ -27,6 +27,10 @@ function setup() {
   
   animation = createVideo("all.mp4");
   animation.hide();
+  op = createVideo("OP.mp4");
+  op.hide();
+  ed = createVideo("ED.mp4");
+  ed.hide();
     // animation = createVideo("Test.mp4");
     // animation.hide();
   
@@ -131,13 +135,14 @@ class CountDownState extends State {
     super();
   }
   drawState(){
-    fill(255);
-    text("時計に入り込むアニメーションをいれます", 0, windowHeight*0.5, width);
+    op.loop();
+    image(op, 0, 0, width, height);    
   }
   domousePressed(){
   }
   decideState() {
-    if (time_count > 2.99) {
+    if (time_count > 7.99) {
+      op.stop();
       return new SettingState(); 
     }
     return this;
@@ -295,7 +300,7 @@ class AnimationState extends State {
     animation.loop();
     image(animation, width*0.6, height*0.1, 128*3, 72*3);
     //tint(255, 127);
-    this.nowW = 0.1/timewitha[this.count];
+    this.nowW = 0.05/(timewitha[this.count]*timewitha[this.count]);
     this.sW = windowWidth*(0.35 - this.nowW);
     this.eW = windowWidth*(0.35 + this.nowW);
     // for(let h=0; h<=0.00333*draw_count*windowHeight; h+=15){
@@ -376,14 +381,21 @@ class EndingState extends State {
       text("『伸縮する時間』", 0, windowHeight*0.3, width);
       text("稲田栞里 佐久間響子 菊池知世", 0, windowHeight*0.45, width);
     }
+    else if(time_count < 20.00){
+    }
+    else if(time_count < 24.00){
+      text("おわり", 0, windowHeight*0.5, width);
+    }
     else{
-      text("もどりのアニメーションをいれます", 0, windowHeight*0.5, width);
+      ed.loop();
+      image(ed, 0, 0, width, height);
     }
     
   }
   domousePressed() {
   }
   decideState() {
+    ed.stop();
     return this;
   }
 }
