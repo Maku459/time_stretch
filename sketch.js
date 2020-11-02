@@ -353,6 +353,8 @@ class AnimationState extends State {
       //}
     }
     
+    strokeWeight(0);
+    textSize(50);
     text(timewitha[this.count], 0, windowHeight*0.7, windowWidth*0.9);
     
     if(this.sum < time_count){
@@ -383,6 +385,7 @@ class EndingState extends State {
       
     }
     else if(time_count < 13.99){
+      textSize(30);
       text("正確な1秒を刻めていましたか？", 0, windowHeight*0.35, width);
       text("時間は様々な要因によって変化します。", 0, windowHeight*0.45, width);
       text("少しでもその『伸縮』を感じていただけたら幸いです。", 0, windowHeight*0.55, width);
