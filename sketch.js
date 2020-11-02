@@ -280,7 +280,7 @@ class ClickState extends State {
   }
   decideState() {
     if (time_count > 41.99) { // if ellapsed time is larger than
-      //timewitha[this.count] = abs(time_length - prev_time) / 1000;
+      timewitha[this.count] = (millis() - prev_time) / 1000;
       animation.stop();
       return new TitleState_3(); 
     }
@@ -355,7 +355,7 @@ class AnimationState extends State {
     
     strokeWeight(0);
     textSize(50);
-    text(timewitha[this.count], 0, windowHeight*0.7, windowWidth*0.9);
+    text(timewitha[this.count].toFixed(2), 0, windowHeight*0.7, windowWidth*0.9);
     
     if(this.sum < time_count){
       this.count++;
