@@ -13,14 +13,14 @@ let nowState = 0, flag = 0;//flag0=奇数， flag1=偶数
 let pMinMass = 4, pMaxMass = 10, particles = [], exact = [];
 
 function preload(){
-  font = loadFont("NotoSerifJP-ExtraLight.otf");
+  font = loadFont("ipam.ttf");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   textFont(font);
   //textFont("Meiryo");
-  textSize(20);
+  textSize(30);
   textAlign(CENTER, CENTER);
   fill(0);
   time_length = 5.00;
@@ -107,10 +107,21 @@ class TitleState extends State {
     background(255);
     fill(0);
     //super.doState();
-    if(time_count<3.0){
+    if(time_count < 3.0){
+      textSize(20);
+      text("※この作品は音が出ます※", 0, windowHeight*0.5, width);
+    }
+    else if(time_count < 5.0){
+      
+    }
+    else if(time_count < 9.0){
+      textSize(30);
       text("時間は一定に流れている ―", 0, windowHeight*0.5, width);
     }
-    else if(time_count > 3.0){
+    else if(time_count < 11.0){
+      
+    }
+    else{
       text("それは本当でしょうか。", 0, windowHeight*0.45, width);
       text("あなたには確信が持てますか？", 0, windowHeight*0.55, width);
     }    
@@ -118,7 +129,7 @@ class TitleState extends State {
   domousePressed(){
   }
   decideState() {
-    if (time_count > 8.99) {
+    if (time_count > 14.99) {
       for (let i = 0; i < 3000; i++) {
         timewitha[i] = 1.0;
       }
@@ -205,6 +216,21 @@ class TitleState_2 extends State {
       text("あなたが思う正確な1秒を", 0, windowHeight*0.45, width);
       text("クリックしながら刻み続けてください。", 0, windowHeight*0.55, width);
     }
+    else if(time_count < 8.0){
+      
+    }
+    else if(time_count < 9.0){
+      textSize(60);
+      text("3", 0, windowHeight*0.5, width);
+    }
+    else if(time_count < 10.0){
+      textSize(60);
+      text("2", 0, windowHeight*0.5, width);
+    }
+    else{
+      textSize(60);
+      text("1", 0, windowHeight*0.5, width);
+    }
   }
   domousePressed(){
     //音を鳴らすだけ
@@ -218,7 +244,7 @@ class TitleState_2 extends State {
     }
   }
   decideState() {
-    if (time_count > 10.99) {
+    if (time_count > 10.9) {
       return new ClickState(); 
     }
     return this;
@@ -270,10 +296,11 @@ class TitleState_3 extends State {
   }
   drawState(){
     //super.doState();
+    textSize(30);
     text("お疲れさまでした。", 0, windowHeight*0.3, width);
     text("最後にあなたの1秒を可視化していきましょう。", 0, windowHeight*0.4, width);
     text("上から流れる白い砂があなたの刻みです。", 0, windowHeight*0.5, width);
-    text("色のついた砂より太かったら刻んだ1秒が短く、細かったら刻んだ1秒が長かったということです。", 0, windowHeight*0.6, width); 
+    text("色のついた砂より太かったら刻んだ1秒が長く、細かったら刻んだ1秒が短かったということです。", 0, windowHeight*0.6, width); 
     //text("細かったら刻んだ1秒が長かったということです。", 0, windowHeight*0.7, width);
   }
   domousePressed(){
@@ -298,34 +325,18 @@ class AnimationState extends State {
   }
   drawState() {
     animation.loop();
-    image(animation, width*0.6, height*0.1, 128*3, 72*3);
+    image(animation, width*0.6, height*0.1, 128*4, 72*4);
     //tint(255, 127);
-    this.nowW = 0.05/(timewitha[this.count]*timewitha[this.count]);
-    this.sW = windowWidth*(0.35 - this.nowW);
-    this.eW = windowWidth*(0.35 + this.nowW);
-    // for(let h=0; h<=0.00333*draw_count*windowHeight; h+=15){
-    //   //text(timewitha[this.count], windowWidth*0.5, 50);
-    //   this.nowW = 0.1/timewitha[this.count];
-    //   this.sW = windowWidth*(0.35 - this.nowW);
-    //   this.eW = windowWidth*(0.35 + this.nowW);
-    //   for(let w = this.sW; w <= this.eW; w+=15){
-    //     ellipse(w, h, 10, 10);
-    //   }
-    // }
-    this.exactsW = windowWidth*0.3;
-    this.exacteW = windowWidth*0.4;
+    this.nowW = 0.05*timewitha[this.count];
+    this.sW = windowWidth*(0.25 - this.nowW);
+    this.eW = windowWidth*(0.25 + this.nowW);
+    this.exactsW = windowWidth*0.2;
+    this.exacteW = windowWidth*0.3;
     colorMode(HSB, 360);
     for(let num = 0; num < 4; num++){
       this.w = random(this.sW, this.eW);
       this.mass = random(pMinMass, pMaxMass);
       this.displayColor = color(255);
-      // if (particles.length % 5 == 0) {
-      //   this.displayColor = color(255);
-      // } 
-      // else {
-      //   this.displayColor = color(random(210, 240), 255, 255);
-      // }
-
       this.newParticle = new Particle(this.w, 0, this.mass, this.displayColor);
       particles[particles.length] = this.newParticle;
       exact[exact.length] = new Particle(random(this.exactsW, this.exacteW), 0, this.mass, color(random(210, 240), 255, 255));
@@ -341,6 +352,8 @@ class AnimationState extends State {
         //particles.splice(i, 1);
       //}
     }
+    
+    text(timewitha[this.count], 0, windowHeight*0.7, windowWidth*0.9);
     
     if(this.sum < time_count){
       this.count++;
@@ -378,8 +391,8 @@ class EndingState extends State {
       
     }
     else if(time_count < 19.00){
-      text("『伸縮する時間』", 0, windowHeight*0.3, width);
-      text("稲田栞里 佐久間響子 菊池知世", 0, windowHeight*0.45, width);
+      textSize(50);
+      text("『伸縮する時間』", 0, windowHeight*0.5, width);
     }
     else if(time_count < 20.00){
     }
