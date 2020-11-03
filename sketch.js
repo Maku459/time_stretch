@@ -6,7 +6,7 @@ let timewitha = [];
 
 var animation, op, ed, sound0, sound1; 
 
-let font, button;
+let font, clock_font, button;
 let time_length;
 let nowState = 0, flag = 0;//flag0=奇数， flag1=偶数
 
@@ -14,10 +14,11 @@ let pMinMass = 4, pMaxMass = 10, particles = [], exact = [];
 
 function preload(){
   font = loadFont("ipam.ttf");
+  clock_font = loadFont("digital.ttf");
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowWidth*9.0/16.0);
   textFont(font);
   //textFont("Meiryo");
   textSize(30);
@@ -94,7 +95,7 @@ class State {
  }
 }
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowWidth*9.0/16.0);
 }
 
 /////State1/////////////////////////////
@@ -109,21 +110,21 @@ class TitleState extends State {
     //super.doState();
     if(time_count < 3.0){
       textSize(20);
-      text("※この作品は音が出ます※", 0, windowHeight*0.5, width);
+      text("※この作品は音が出ます※", 0, height*0.5, width);
     }
     else if(time_count < 5.0){
       
     }
     else if(time_count < 9.0){
       textSize(30);
-      text("時間は一定に流れている ―", 0, windowHeight*0.5, width);
+      text("時間は一定に流れている ―", 0, height*0.5, width);
     }
     else if(time_count < 11.0){
       
     }
     else{
-      text("それは本当でしょうか。", 0, windowHeight*0.45, width);
-      text("あなたには確信が持てますか？", 0, windowHeight*0.55, width);
+      text("それは本当でしょうか。", 0, height*0.45, width);
+      text("あなたには確信が持てますか？", 0, height*0.55, width);
     }    
   }
   domousePressed(){
@@ -171,13 +172,14 @@ class SettingState extends State {
     background(0);
     fill(255);
     if(time_count > 1.00){
-      text("ここは時計の中です。", 0, windowHeight*0.35, width);
-      text("あなたが刻む1クリックが、この時計の1秒となります。", 0, windowHeight*0.45, width);
-      text("それでは早速、画面をクリックしてクリック音を確認してください。", 0, windowHeight*0.55, width);
-      text("※音量はご自身で調節ください。", 0, windowHeight*0.55+30, width);
+      textSize(25);
+      text("ここは時計の中です。", 0, height*0.35, width);
+      text("あなたが刻む1クリックが、この時計の1秒となります。", 0, height*0.45, width);
+      text("それでは早速、画面をクリックしてクリック音を確認してください。", 0, height*0.55, width);
+      text("※音量はご自身で調節ください。", 0, height*0.55+30, width);
     }
     if(time_count > 7.99){
-      text("スペースキーを押して次へ行く", 0, windowHeight*0.8, width);
+      text("スペースキーを押して次へ行く", 0, height*0.8, width);
     }
   }
   domousePressed(){
@@ -212,23 +214,26 @@ class TitleState_2 extends State {
     background(0);
     fill(255);
     if(time_count < 7.0){
-      text("画面から目を離さずに", 0, windowHeight*0.35, width);
-      text("あなたが思う正確な1秒を", 0, windowHeight*0.45, width);
-      text("クリックしながら刻み続けてください。", 0, windowHeight*0.55, width);
+      text("画面から目を離さずに", 0, height*0.35, width);
+      text("あなたが思う正確な1秒を", 0, height*0.45, width);
+      text("クリックしながら刻み続けてください。", 0, height*0.55, width);
     }
     else if(time_count < 8.0){
       
     }
     else if(time_count < 9.0){
       textSize(60);
+      textFont(clock_font);
       text("3", 0, windowHeight*0.5, width);
     }
     else if(time_count < 10.0){
       textSize(60);
+      textFont(clock_font);
       text("2", 0, windowHeight*0.5, width);
     }
     else{
       textSize(60);
+      textFont(clock_font);
       text("1", 0, windowHeight*0.5, width);
     }
   }
@@ -280,7 +285,7 @@ class ClickState extends State {
   }
   decideState() {
     if (time_count > 41.99) { // if ellapsed time is larger than
-      //timewitha[this.count] = abs(time_length - prev_time) / 1000;
+      timewitha[this.count] = (millis() - prev_time) / 1000;
       animation.stop();
       return new TitleState_3(); 
     }
@@ -296,11 +301,12 @@ class TitleState_3 extends State {
   }
   drawState(){
     //super.doState();
-    textSize(30);
-    text("お疲れさまでした。", 0, windowHeight*0.3, width);
-    text("最後にあなたの1秒を可視化していきましょう。", 0, windowHeight*0.4, width);
-    text("上から流れる白い砂があなたの刻みです。", 0, windowHeight*0.5, width);
-    text("色のついた砂より太かったら刻んだ1秒が長く、細かったら刻んだ1秒が短かったということです。", 0, windowHeight*0.6, width); 
+    textSize(25);
+    textFont(font);
+    text("お疲れさまでした。", 0, height*0.3, width);
+    text("最後にあなたの1秒を可視化していきましょう。", 0, height*0.4, width);
+    text("上から流れる白い砂があなたの刻みです。", 0, height*0.5, width);
+    text("色のついた砂より太かったら刻んだ1秒が長く、細かったら刻んだ1秒が短かったということです。", 0, height*0.6, width); 
     //text("細かったら刻んだ1秒が長かったということです。", 0, windowHeight*0.7, width);
   }
   domousePressed(){
@@ -327,7 +333,7 @@ class AnimationState extends State {
     animation.loop();
     image(animation, width*0.6, height*0.1, 128*4, 72*4);
     //tint(255, 127);
-    this.nowW = 0.05*timewitha[this.count];
+    this.nowW = 0.5*timewitha[this.count];
     this.sW = windowWidth*(0.25 - this.nowW);
     this.eW = windowWidth*(0.25 + this.nowW);
     this.exactsW = windowWidth*0.2;
@@ -353,7 +359,10 @@ class AnimationState extends State {
       //}
     }
     
-    text(timewitha[this.count], 0, windowHeight*0.7, windowWidth*0.9);
+    strokeWeight(0);
+    textSize(50);
+    textFont(clock_font);
+    text(timewitha[this.count].toFixed(2), 0, height*0.7, width*0.9);
     
     if(this.sum < time_count){
       this.count++;
@@ -383,16 +392,18 @@ class EndingState extends State {
       
     }
     else if(time_count < 13.99){
-      text("正確な1秒を刻めていましたか？", 0, windowHeight*0.35, width);
-      text("時間は様々な要因によって変化します。", 0, windowHeight*0.45, width);
-      text("少しでもその『伸縮』を感じていただけたら幸いです。", 0, windowHeight*0.55, width);
+      textSize(25);
+      textFont(font);
+      text("正確な1秒を刻めていましたか？", 0, height*0.35, width);
+      text("時間は様々な要因によって変化します。", 0, height*0.45, width);
+      text("少しでもその『伸縮』を感じていただけたら幸いです。", 0, height*0.55, width);
     }
     else if(time_count < 15.00){
       
     }
     else if(time_count < 19.00){
       textSize(50);
-      text("『伸縮する時間』", 0, windowHeight*0.5, width);
+      text("『伸縮する時間』", 0, height*0.5, width);
     }
     else if(time_count < 20.00){
     }
@@ -407,7 +418,7 @@ class EndingState extends State {
       ed.stop();
       background(255);
       fill(0);
-      text("おわり", 0, windowHeight*0.5, width);
+      text("おわり", 0, height*0.5, width);
     }
   }
   domousePressed() {
