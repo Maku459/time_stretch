@@ -222,17 +222,17 @@ class TitleState_2 extends State {
       
     }
     else if(time_count < 9.0){
-      textSize(60);
+      textSize(120);
       textFont(clock_font);
       text("3", 0, windowHeight*0.5, width);
     }
     else if(time_count < 10.0){
-      textSize(60);
+      textSize(120);
       textFont(clock_font);
       text("2", 0, windowHeight*0.5, width);
     }
     else{
-      textSize(60);
+      textSize(120);
       textFont(clock_font);
       text("1", 0, windowHeight*0.5, width);
     }
@@ -360,7 +360,7 @@ class AnimationState extends State {
     }
     
     strokeWeight(0);
-    textSize(50);
+    textSize(80);
     textFont(clock_font);
     text(timewitha[this.count].toFixed(2), 0, height*0.7, width*0.9);
     
