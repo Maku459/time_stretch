@@ -333,7 +333,7 @@ class AnimationState extends State {
     animation.loop();
     image(animation, width*0.6, height*0.1, 128*4, 72*4);
     //tint(255, 127);
-    this.nowW = 0.5*timewitha[this.count];
+    this.nowW = 0.2*timewitha[this.count];
     this.sW = windowWidth*(0.25 - this.nowW);
     this.eW = windowWidth*(0.25 + this.nowW);
     this.exactsW = windowWidth*0.2;
