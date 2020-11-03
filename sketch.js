@@ -284,7 +284,7 @@ class ClickState extends State {
     prev_time = millis();
   }
   decideState() {
-    if (time_count > 41.99) { // if ellapsed time is larger than
+    if (time_count > 36.99) { // if ellapsed time is larger than
       timewitha[this.count] = (millis() - prev_time) / 1000;
       animation.stop();
       return new TitleState_3(); 
