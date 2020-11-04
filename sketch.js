@@ -336,8 +336,8 @@ class AnimationState extends State {
     this.nowW = 0.2*timewitha[this.count];
     this.sW = windowWidth*(0.25 - this.nowW);
     this.eW = windowWidth*(0.25 + this.nowW);
-    this.exactsW = windowWidth*0.2;
-    this.exacteW = windowWidth*0.3;
+    this.exactsW = windowWidth*0.05;
+    this.exacteW = windowWidth*0.45;
     colorMode(HSB, 360);
     for(let num = 0; num < 4; num++){
       this.w = random(this.sW, this.eW);
