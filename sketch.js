@@ -18,7 +18,7 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(windowWidth, windowWidth*9.0/16.0);
+  createCanvas(windowWidth, windowHeight);
   textFont(font);
   //textFont("Meiryo");
   textSize(30);
