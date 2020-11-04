@@ -372,7 +372,7 @@ class AnimationState extends State {
   domousePressed() {
   }
   decideState() {
-    if (time_count > 41.99) { // if ellapsed time is larger than
+    if (time_count > 36.99) { // if ellapsed time is larger than
       animation.stop();
       return new EndingState(); // go to ending
     }
