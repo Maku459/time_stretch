@@ -95,7 +95,7 @@ class State {
  }
 }
 function windowResized() {
-  resizeCanvas(windowWidth, windowWidth*9.0/16.0);
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 /////State1/////////////////////////////
