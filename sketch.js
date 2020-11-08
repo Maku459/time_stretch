@@ -137,7 +137,7 @@ class TitleState extends State {
       return new CountDownState();
     }
     else if (keyIsPressed) {
-      if(keyCode == ENTER){
+      if(keyCode === ENTER){
         for (let i = 0; i < 3000; i++) {
           timewitha[i] = 1.0;
         }
@@ -166,7 +166,7 @@ class CountDownState extends State {
       return new SettingState(); 
     }
     else if (keyIsPressed) {
-      if(keyCode == ENTER){
+      if(keyCode === ENTER){
         op.stop();
         return new SettingState();
       }
@@ -214,7 +214,7 @@ class SettingState extends State {
       }
     } 
     else if (keyIsPressed) {
-      if(keyCode == ENTER){
+      if(keyCode === ENTER){
         return new TitleState_2();
       }
     }
@@ -333,7 +333,7 @@ class TitleState_3 extends State {
       return new AnimationState(); 
     }
     else if (keyIsPressed) {
-      if(keyCode == ENTER){
+      if(keyCode === ENTER){
         return new AnimationState(); 
       }
     }
