@@ -433,6 +433,7 @@ class EndingState extends State {
     }
     else{
       textSize(80);
+      background(255);
       fill(0);
       text("伸縮する時間", 0, height*0.5, width);
     }
