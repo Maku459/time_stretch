@@ -136,6 +136,14 @@ class TitleState extends State {
       }
       return new CountDownState();
     }
+    else if (keyIsPressed) {
+      if(key == ENTER){
+        for (let i = 0; i < 3000; i++) {
+          timewitha[i] = 1.0;
+        }
+        return new CountDownState();
+      }
+    }
     return this;
   }
 }
@@ -156,6 +164,12 @@ class CountDownState extends State {
     if (time_count > 7.99) {
       op.stop();
       return new SettingState(); 
+    }
+    else if (keyIsPressed) {
+      if(key == ENTER){
+        op.stop();
+        return new SettingState();
+      }
     }
     return this;
   }
@@ -199,6 +213,11 @@ class SettingState extends State {
         return new TitleState_2();  
       }
     } 
+    else if (keyIsPressed) {
+      if(key == ENTER){
+        return new TitleState_2();
+      }
+    }
     return this;
   }
 }
@@ -303,17 +322,20 @@ class TitleState_3 extends State {
     //super.doState();
     textSize(25);
     textFont(font);
-    text("お疲れさまでした。", 0, height*0.3, width);
-    text("最後にあなたの1秒を可視化していきましょう。", 0, height*0.4, width);
-    text("上から流れる白い砂があなたの刻みです。", 0, height*0.5, width);
-    text("色のついた砂より太かったら刻んだ1秒が長く、細かったら刻んだ1秒が短かったということです。", 0, height*0.6, width); 
-    //text("細かったら刻んだ1秒が長かったということです。", 0, windowHeight*0.7, width);
+    text("最後に、あなたが刻んだ時間を可視化していきましょう。", 0, height*0.4, width);
+    text("上から流れる白い砂があなたの刻み、青い砂が正確な1秒を表します。", 0, height*0.5, width);
+    text("砂の流れは刻んだ一秒が長いときに太く、短いときに細くなります。", 0, height*0.6, width); 
   }
   domousePressed(){
   }
   decideState() {
     if (time_count > 10.99) {
       return new AnimationState(); 
+    }
+    else if (keyIsPressed) {
+      if(key == ENTER){
+        return new AnimationState(); 
+      }
     }
     return this;
   }
@@ -394,31 +416,25 @@ class EndingState extends State {
     else if(time_count < 13.99){
       textSize(25);
       textFont(font);
-      text("正確な1秒を刻めていましたか？", 0, height*0.35, width);
-      text("時間は様々な要因によって変化します。", 0, height*0.45, width);
-      text("少しでもその『伸縮』を感じていただけたら幸いです。", 0, height*0.55, width);
+      text("正確な時間を刻むことができたでしょうか。", 0, height*0.35, width);
+      text("あなたの知らぬ間に、時間はひっそりと流れ方を変えているのかもしれません。", 0, height*0.45, width);
+      text("ときには、そんな「伸縮する時間」に耳を傾けてみてください。", 0, height*0.55, width);
     }
     else if(time_count < 15.00){
       
     }
-    else if(time_count < 19.00){
-      textSize(50);
-      text("『伸縮する時間』", 0, height*0.5, width);
-    }
-    else if(time_count < 20.00){
-    }
-    else if(time_count < 28.00){
+    else if(time_count < 23.00){
       ed.loop();
       image(ed, 0, 0, width, height);
     }
-    else if(time_count < 29.00){
-      
-    }
-    else{
+    else if(time_count < 24.00){
       ed.stop();
       background(255);
+    }
+    else{
+      textSize(80);
       fill(0);
-      text("おわり", 0, height*0.5, width);
+      text("伸縮する時間", 0, height*0.5, width);
     }
   }
   domousePressed() {
