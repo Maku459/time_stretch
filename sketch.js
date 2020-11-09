@@ -377,7 +377,6 @@ class AnimationState extends State {
 //       exact[i].move();
 //       exact[i].display();
 //     }
-    rect(始点のx座標, 始点のy座標, 横幅、縦幅);
     this.exactsW = windowWidth * 0.2;
     this.exacteW = windowWidth * 0.3;
     this.nowW = 3 * (timewitha[this.count] - 1.0);
