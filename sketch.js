@@ -380,8 +380,8 @@ class AnimationState extends State {
     this.exactsW = windowWidth * 0.2;
     this.exacteW = windowWidth * 0.3;
     this.nowW = 3 * (timewitha[this.count] - 1.0);
-    this.sW = windowWidth * (0.2 - this.nowW);
-    this.eW = windowWidth * (0.2 + this.nowW);
+    this.sW = windowWidth * (0.25 - this.nowW);
+    this.eW = windowWidth * (0.25 + this.nowW);
     fill(210, 255, 255);
     rect(this.sW, 0, this.eW-this.sW, windowHeight);
     fill(11, 255, 255);
