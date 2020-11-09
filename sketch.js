@@ -379,7 +379,7 @@ class AnimationState extends State {
 //     }
     this.exactsW = windowWidth * 0.2;
     this.exacteW = windowWidth * 0.3;
-    if(timewitha[this.count] > 1.0){
+    if(timewitha[this.count] >= 1.0){
       this.nowW = 3.0 * (timewitha[this.count] - 1.0);
       this.sW = windowWidth * (0.2 - this.nowW);
       this.eW = windowWidth * (0.3 + this.nowW);
@@ -391,7 +391,7 @@ class AnimationState extends State {
     }
     
     fill(210, 255, 255);
-    rect(this.sW, 0, this.eW-this.sW, windowHeight);
+    rect(this.sW, 0, abs(this.eW-this.sW), windowHeight);//始点ｘ， 始点y, 幅, 高さ
     fill(11, 255, 255);
     rect(this.exactsW, 0, windowWidth * 0.1, windowHeight);
     
