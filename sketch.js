@@ -49,29 +49,29 @@ function mousePressed(){
   state.mousePressed();
 }
 
-function Particle(x, y, mass, displayColor) {
-  this.pos = new p5.Vector(x, y);//位置
-  this.vel = new p5.Vector(0, 0);//速度
-  this.acc = new p5.Vector(0, 0);//加速度
-  this.mass = mass;
-  this.displayColor = displayColor;
-  this.fallRate = map(this.mass, pMinMass, pMaxMass, 0.1, 0.05);//小さいものははやく落ちて大きいものはゆっくり落ちる
+// function Particle(x, y, mass, displayColor) {
+//   this.pos = new p5.Vector(x, y);//位置
+//   this.vel = new p5.Vector(0, 0);//速度
+//   this.acc = new p5.Vector(0, 0);//加速度
+//   this.mass = mass;
+//   this.displayColor = displayColor;
+//   this.fallRate = map(this.mass, pMinMass, pMaxMass, 0.1, 0.05);//小さいものははやく落ちて大きいものはゆっくり落ちる
   
-  this.move = function() {
-    this.gravity = new p5.Vector(0, this.fallRate);
-    this.acc.add(this.gravity);
+//   this.move = function() {
+//     this.gravity = new p5.Vector(0, this.fallRate);
+//     this.acc.add(this.gravity);
     
-    this.vel.add(this.acc);
-    this.pos.add(this.vel);
-    this.acc.mult(0);
-  };
+//     this.vel.add(this.acc);
+//     this.pos.add(this.vel);
+//     this.acc.mult(0);
+//   };
   
-  this.display = function() {
-    stroke(this.displayColor);//枠線
-    strokeWeight(this.mass);
-    point(this.pos.x, this.pos.y);
-  };
-}
+//   this.display = function() {
+//     stroke(this.displayColor);//枠線
+//     strokeWeight(this.mass);
+//     point(this.pos.x, this.pos.y);
+//   };
+// }
 
 
 /////State/////////////////////////////
@@ -355,33 +355,41 @@ class AnimationState extends State {
     animation.loop();
     image(animation, width*0.6, height*0.1, 128*4, 72*4);
     //tint(255, 127);
-    this.nowW = 0.2*timewitha[this.count];
-    this.sW = windowWidth*(0.25 - this.nowW);
-    this.eW = windowWidth*(0.25 + this.nowW);
-    this.exactsW = windowWidth*0.05;
-    this.exacteW = windowWidth*0.45;
-    colorMode(HSB, 360);
-    for(let num = 0; num < 4; num++){
-      this.w = random(this.sW, this.eW);
-      this.mass = random(pMinMass, pMaxMass);
-      this.displayColor = color(255);
-      this.newParticle = new Particle(this.w, 0, this.mass, this.displayColor);
-      particles[particles.length] = this.newParticle;
-      exact[exact.length] = new Particle(random(this.exactsW, this.exacteW), 0, this.mass, color(random(210, 240), 255, 255));
-    }
+//     this.nowW = 0.2*timewitha[this.count];
+//     this.sW = windowWidth*(0.25 - this.nowW);
+//     this.eW = windowWidth*(0.25 + this.nowW);
+//     this.exactsW = windowWidth*0.05;
+//     this.exacteW = windowWidth*0.45;
+//     colorMode(HSB, 360);
+//     for(let num = 0; num < 4; num++){
+//       this.w = random(this.sW, this.eW);
+//       this.mass = random(pMinMass, pMaxMass);
+//       this.displayColor = color(255);
+//       this.newParticle = new Particle(this.w, 0, this.mass, this.displayColor);
+//       particles[particles.length] = this.newParticle;
+//       exact[exact.length] = new Particle(random(this.exactsW, this.exacteW), 0, this.mass, color(random(210, 240), 255, 255));
+//     }
     
-    colorMode(RGB, 255);
-    for(let i = 0; i < particles.length; i++){
-      particles[i].move();
-      particles[i].display();
-      exact[i].move();
-      exact[i].display();
-      //if (particles[i].pos.y > height) {
-        //particles.splice(i, 1);
-      //}
-    }
+//     colorMode(RGB, 255);
+//     for(let i = 0; i < particles.length; i++){
+//       particles[i].move();
+//       particles[i].display();
+//       exact[i].move();
+//       exact[i].display();
+//     }
+    rect(始点のx座標, 始点のy座標, 横幅、縦幅);
+    this.exactsW = windowWidth * 0.2;
+    this.exacteW = windowWidth * 0.3;
+    this.nowW = 3 * (timewitha[this.count] - 1.0);
+    this.sW = windowWidth * (0.2 - this.nowW);
+    this.eW = windowWidth * (0.2 + this.nowW);
+    fill(210, 255, 255);
+    rect(this.sW, 0, this.sW-this.eW, windowHeight);
+    fill(11, 255, 255);
+    rect(this.exactsW, 0, windowWidth * 0.1, windowHeight);
     
-    strokeWeight(0);
+    
+//     strokeWeight(0);
     textSize(80);
     textFont(clock_font);
     text(timewitha[this.count].toFixed(2), 0, height*0.7, width*0.9);
