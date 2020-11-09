@@ -383,7 +383,7 @@ class AnimationState extends State {
     this.sW = windowWidth * (0.2 - this.nowW);
     this.eW = windowWidth * (0.2 + this.nowW);
     fill(210, 255, 255);
-    rect(this.sW, 0, this.sW-this.eW, windowHeight);
+    rect(this.sW, 0, this.eW-this.sW, windowHeight);
     fill(11, 255, 255);
     rect(this.exactsW, 0, windowWidth * 0.1, windowHeight);
     
@@ -391,6 +391,7 @@ class AnimationState extends State {
 //     strokeWeight(0);
     textSize(80);
     textFont(clock_font);
+    fill(255);
     text(timewitha[this.count].toFixed(2), 0, height*0.7, width*0.9);
     
     if(this.sum < time_count){
