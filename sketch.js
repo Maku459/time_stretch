@@ -18,7 +18,7 @@ function preload(){
 }
 
 function setup() {
-  fullscreen();
+  fullscreen(true);
   createCanvas(windowWidth, windowHeight);
   textFont(font);
   //textFont("Meiryo");
