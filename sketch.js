@@ -18,6 +18,7 @@ function preload(){
 }
 
 function setup() {
+  fullscreen();
   createCanvas(windowWidth, windowHeight);
   textFont(font);
   //textFont("Meiryo");
@@ -385,14 +386,14 @@ class AnimationState extends State {
       this.eW = windowWidth * (0.3 + this.nowW);
     }
     if(timewitha[this.count] < 1.0){
-      this.nowW = 3.0 * (1.0 - timewitha[this.count]);
+      this.nowW = 0.5 * (1.0 - timewitha[this.count]);
       this.sW = windowWidth * (0.2 + this.nowW);
       this.eW = windowWidth * (0.3 - this.nowW);
     }
     
     fill(210, 255, 255);
     rect(this.sW, 0, abs(this.eW-this.sW), windowHeight);//始点ｘ， 始点y, 幅, 高さ
-    fill(11, 255, 255);
+    fill(11, 255, 255, 200);
     rect(this.exactsW, 0, windowWidth * 0.1, windowHeight);
     
     
