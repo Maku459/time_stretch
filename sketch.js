@@ -19,7 +19,7 @@ function preload(){
 
 function setup() {
   fullscreen(true);
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(displayWidth, displayHeight);
   textFont(font);
   //textFont("Meiryo");
   textSize(30);
@@ -96,7 +96,7 @@ class State {
  }
 }
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(displayWidth, displayHeight);
 }
 
 /////State1/////////////////////////////
@@ -244,17 +244,17 @@ class TitleState_2 extends State {
     else if(time_count < 9.0){
       textSize(120);
       textFont(clock_font);
-      text("3", 0, windowHeight*0.5, width);
+      text("3", 0, height*0.5, width);
     }
     else if(time_count < 10.0){
       textSize(120);
       textFont(clock_font);
-      text("2", 0, windowHeight*0.5, width);
+      text("2", 0, height*0.5, width);
     }
     else{
       textSize(120);
       textFont(clock_font);
-      text("1", 0, windowHeight*0.5, width);
+      text("1", 0, height*0.5, width);
     }
   }
   domousePressed(){
@@ -378,23 +378,23 @@ class AnimationState extends State {
 //       exact[i].move();
 //       exact[i].display();
 //     }
-    this.exactsW = windowWidth * 0.2;
-    this.exacteW = windowWidth * 0.3;
+    this.exactsW = width * 0.2;
+    this.exacteW = width * 0.3;
     if(timewitha[this.count] >= 1.0){
-      this.nowW = 3.0 * (timewitha[this.count] - 1.0);
-      this.sW = windowWidth * (0.2 - this.nowW);
-      this.eW = windowWidth * (0.3 + this.nowW);
+      this.nowW = 1.0 * (timewitha[this.count] - 1.0);
+      this.sW = width * (0.2 - this.nowW);
+      this.eW = width * (0.3 + this.nowW);
     }
     if(timewitha[this.count] < 1.0){
-      this.nowW = 0.5 * (1.0 - timewitha[this.count]);
-      this.sW = windowWidth * (0.2 + this.nowW);
-      this.eW = windowWidth * (0.3 - this.nowW);
+      this.nowW = 0.05 * timewitha[this.count];
+      this.sW = width * (0.25 - this.nowW);
+      this.eW = width * (0.25 + this.nowW);
     }
     
     fill(210, 255, 255);
-    rect(this.sW, 0, abs(this.eW-this.sW), windowHeight);//始点ｘ， 始点y, 幅, 高さ
+    rect(this.sW, 0, abs(this.eW-this.sW), height);//始点ｘ， 始点y, 幅, 高さ
     fill(11, 255, 255, 200);
-    rect(this.exactsW, 0, windowWidth * 0.1, windowHeight);
+    rect(this.exactsW, 0, width * 0.1, height);
     
     
 //     strokeWeight(0);
