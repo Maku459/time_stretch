@@ -19,7 +19,7 @@ function preload(){
 
 function setup() {
   fullscreen(true);
-  createCanvas(displayWidth, displayHeight);
+  createCanvas(windowWidth, windowHeight);
   textFont(font);
   //textFont("Meiryo");
   textSize(30);
@@ -96,7 +96,7 @@ class State {
  }
 }
 function windowResized() {
-  resizeCanvas(displayWidth, displayHeight);
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 /////State1/////////////////////////////
