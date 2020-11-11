@@ -401,7 +401,7 @@ class AnimationState extends State {
     textSize(80);
     textFont(clock_font);
     fill(255);
-    text(timewitha[this.count].toFixed(2), 0, height*0.7, width*0.9);
+    text(timewitha[this.count].toFixed(2), 0, height*0.7, width*1.5);
     
     if(this.sum < time_count){
       this.count++;
