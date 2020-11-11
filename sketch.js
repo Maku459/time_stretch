@@ -111,7 +111,8 @@ class TitleState extends State {
     //super.doState();
     if(time_count < 3.0){
       textSize(20);
-      text("※この作品は音が出ます※", 0, height*0.5, width);
+      text("※この作品は音が出ます※", 0, height*0.45, width);
+      text("※説明を飛ばしたい方はEnterキーを押してください※", 0, height*0.55, width);
     }
     else if(time_count < 5.0){
       
@@ -324,8 +325,7 @@ class TitleState_3 extends State {
     textSize(25);
     textFont(font);
     text("最後に、あなたが刻んだ時間を可視化していきましょう。", 0, height*0.4, width);
-    text("上から流れる白い砂があなたの刻み、青い砂が正確な1秒を表します。", 0, height*0.5, width);
-    text("砂の流れは刻んだ一秒が長いときに太く、短いときに細くなります。", 0, height*0.6, width); 
+    text("刻みの間隔に応じて画面に表示される図形の幅が変化します。", 0, height*0.5, width);
   }
   domousePressed(){
   }
@@ -448,11 +448,20 @@ class EndingState extends State {
       ed.stop();
       background(255);
     }
-    else{
+    else if(time_count < 27.00){
       textSize(50);
       background(255);
       fill(0);
       text("伸縮する時間", 0, height*0.5, width);
+    }
+    else if(time_count < 29.00){
+      textSize(30);
+      background(255);
+      fill(0);
+      text("タブを閉じて作品ページへお戻りください。", 0, height*0.5, width);
+    }
+    else{
+    
     }
   }
   domousePressed() {
