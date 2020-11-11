@@ -455,13 +455,13 @@ class EndingState extends State {
       text("伸縮する時間", 0, height*0.5, width);
     }
     else if(time_count < 27.00){
+      background(255);
+    }
+    else{
       textSize(30);
       background(255);
       fill(0);
       text("タブを閉じて作品ページへお戻りください。", 0, height*0.5, width);
-    }
-    else{
-    
     }
   }
   domousePressed() {
