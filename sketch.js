@@ -440,21 +440,21 @@ class EndingState extends State {
     else if(time_count < 15.00){
       
     }
-    else if(time_count < 23.00){
+    else if(time_count < 21.00){
       ed.loop();
       image(ed, 0, 0, width, height);
     }
-    else if(time_count < 24.00){
+    else if(time_count < 22.00){
       ed.stop();
       background(255);
     }
-    else if(time_count < 27.00){
+    else if(time_count < 25.00){
       textSize(50);
       background(255);
       fill(0);
       text("伸縮する時間", 0, height*0.5, width);
     }
-    else if(time_count < 29.00){
+    else if(time_count < 27.00){
       textSize(30);
       background(255);
       fill(0);
