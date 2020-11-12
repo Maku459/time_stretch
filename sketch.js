@@ -408,21 +408,21 @@ class AnimationState extends State {
     if(this.sum < time_count){
       this.count++;
       this.sum += timewitha[this.count];
-      if(flag == 0 && this.ok == 0){
+      if(flag == 0 ){
         flag = 1;
-        this.ok = 1;
       }
-      else if (flag == 1 && this.ok == 0){
+      else if (flag == 1){
         flag = 0;
-        this.ok = 1;
       }
     }
     //音を鳴らすだけ
-    if(flag == 0){
+    if(flag == 0 && this.ok == 0){
       sound0.play();
+      this.ok = 1;
     }
-    if(flag == 1){
+    if(flag == 1 && this.ok == 0){
       sound1.play();
+      this.ok = 1;
     }
   }
   domousePressed() {
