@@ -410,9 +410,11 @@ class AnimationState extends State {
       this.sum += timewitha[this.count];
       if(flag == 0 ){
         flag = 1;
+        this.ok = 0;
       }
       else if (flag == 1){
         flag = 0;
+        this.ok = 0;
       }
     }
     //音を鳴らすだけ
