@@ -351,6 +351,7 @@ class AnimationState extends State {
     this.sum = timewitha[0];
     this.count = 0;
     this.nowW = 0;
+    this.ok = 0;
     flag = 0;
   }
   drawState() {
@@ -407,11 +408,13 @@ class AnimationState extends State {
     if(this.sum < time_count){
       this.count++;
       this.sum += timewitha[this.count];
-      if(flag == 0){
+      if(flag == 0 && this.ok == 0){
         flag = 1;
+        this.ok = 1;
       }
-      else{
+      else if (flag == 1 && this.ok == 0){
         flag = 0;
+        this.ok = 1;
       }
     }
     //音を鳴らすだけ
@@ -475,12 +478,18 @@ class EndingState extends State {
       textSize(20);
       background(255);
       fill(0);
-      text("※タブを閉じて作品ページへお戻りください※", 0, height*0.5, width);
+      text("※タブを閉じて作品ページへお戻りください※", 0, height*0.45, width);
+      text("※もう一度体験したい方はスペースキーを押してください※", 0, height*0.55, width);
     }
   }
   domousePressed() {
   }
   decideState() {
+    if (keyIsPressed) {
+      if(key == ' '){
+        return new TitleState();  
+      }
+    }
     return this;
   }
 }
