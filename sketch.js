@@ -109,7 +109,7 @@ class TitleState extends State {
     background(255);
     fill(0);
     //super.doState();
-    if(time_count < 3.0){
+    if(time_count < 4.0){
       textSize(20);
       text("※この作品は音が出ます※", 0, height*0.45, width);
       text("※説明を飛ばしたい方はEnterキーを押してください※", 0, height*0.55, width);
@@ -458,10 +458,10 @@ class EndingState extends State {
       background(255);
     }
     else{
-      textSize(30);
+      textSize(20);
       background(255);
       fill(0);
-      text("タブを閉じて作品ページへお戻りください。", 0, height*0.5, width);
+      text("※タブを閉じて作品ページへお戻りください※", 0, height*0.5, width);
     }
   }
   domousePressed() {
