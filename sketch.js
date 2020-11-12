@@ -351,6 +351,7 @@ class AnimationState extends State {
     this.sum = timewitha[0];
     this.count = 0;
     this.nowW = 0;
+    flag = 0;
   }
   drawState() {
     animation.loop();
@@ -406,6 +407,19 @@ class AnimationState extends State {
     if(this.sum < time_count){
       this.count++;
       this.sum += timewitha[this.count];
+      if(flag == 0){
+        flag = 1;
+      }
+      else{
+        flag = 0;
+      }
+    }
+    //音を鳴らすだけ
+    if(flag == 0){
+      sound0.play();
+    }
+    if(flag == 1){
+      sound1.play();
     }
   }
   domousePressed() {
