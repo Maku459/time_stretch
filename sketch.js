@@ -18,8 +18,8 @@ el.src = 'https://unpkg.com/simple-statistics@7.0.2/dist/simple-statistics.min.j
 document.body.appendChild(el);
 
 function preload() {
-  font = loadFont("ipam.ttf");
-  clock_font = loadFont("digital.ttf");
+  font = loadFont("font/ipam.ttf");
+  clock_font = loadFont("font/digital.ttf");
 }
 
 function setup() {
@@ -32,14 +32,14 @@ function setup() {
   fill(0);
   time_length = 5.00;
 
-  animation = createVideo("all.mp4");
+  animation = createVideo("movie/all.mp4");
   animation.hide();
 
   //animation = createVideo("Test.mp4");
   //animation.hide();
 
-  sound0 = loadSound("Click1.mp3");
-  sound1 = loadSound("Click2.mp3");
+  sound0 = loadSound("sound/Click1.mp3");
+  sound1 = loadSound("sound/Click2.mp3");
 
 
   state = new SettingState();
