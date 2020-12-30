@@ -251,6 +251,27 @@ class TitleState_3 extends State {
     text("最後に、あなたが刻んだ時間を可視化していきましょう。", 0, height * 0.4, width);
     text("刻みの間隔に応じて画面に表示される図形の幅が変化します。", 0, height * 0.5, width);
     text("[TAB]キーを押してください。", 0, height * 0.3, width);
+
+    localStorage.setItem("timewitha", JSON.stringify(timewitha));
+
+    //平均をとる
+    let sum = 0;
+
+    for (let i = 1; i < 21; i++) {
+      sum += timewitha[i];
+    }
+
+    let average = sum / 20;
+    localStorage.setItem("average", average);
+
+    //分散を取る
+    let timewithb = [];
+    for (let i = 1; i < 21; i++) {
+      timewithb.push(timewitha[i]);
+    }
+
+    let v = ss.variance(timewithb);
+    localStorage.setItem("bunsan", v);  
   }
   domousePressed() {
   }
@@ -328,27 +349,6 @@ class AnimationState extends State {
       sound1.play();
       this.ok = 1;
     }
-
-    localStorage.setItem("timewitha", JSON.stringify(timewitha));
-
-    //平均をとる
-    let sum = 0;
-
-    for (let i = 1; i < 21; i++) {
-      sum += timewitha[i];
-    }
-
-    let avarage = sum / 20;
-    localStorage.setItem("avarage", avarage);
-
-    //分散を取る
-    let timewithb = [];
-    for (let i = 1; i < 21; i++) {
-      timewithb.push(timewitha[i]);
-    }
-
-    let v = ss.variance(timewithb);
-    localStorage.setItem("bunsan", v);  
 
   }
   domousePressed() {

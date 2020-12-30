@@ -21,10 +21,10 @@ if (array_shift($include) === __FILE__) {
 }
 
 class record {
-
+  
   private $csv;
   private $time;
-
+  
   	// コンストラクタ宣言
   	public function __construct() {
 
@@ -32,7 +32,19 @@ class record {
 
       date_default_timezone_set('Asia/Tokyo');
       $this->time = date("Y/m/d-H:i:s");
-  	}
+      var_dump($this);
+    }
+
+    // URL名がindex.htmlもしくはindex.phpで終わる場合はURLを丸める
+    public function checkURL($url) {
+      $filenames = array('index.html', 'index.php');
+      foreach ($filenames as $filename) {
+        if (strpos($url, $filename) !== false) {
+          $url = rtrim($url, $filename);
+        }
+      }
+      return $url;
+    }
 
     // PHP5.5以下でもarray_columnに相当する関数を使う
     public function check_column ($target_data, $column_key, $index_key = null) {
@@ -66,16 +78,17 @@ class record {
       fclose($fp);
     }
 
-    //↑と↓の違いがわからない
-
-    // いいね数を増やす関数
-    public function recordCount($postPath) {
-      // CSVに新たな行を追加する
-      $data = array($postPath, $this->time, 1);
+    // 記録する関数
+    public function recordCount($timewitha, $average, $bunsan) {
       $fp = fopen($this->csv, 'a');
-      $line = implode(',' , $data);
+      //配列は文字列にできないので別に書き込む
+      $linea = implode(',' , $timewitha);
+      $data = array($this->time, $average, $bunsan);
+      $lineb = implode(',' , $data);
       error_log(var_export($line, true), 3, 'debug.txt');
-      fwrite($fp, $line . "\n");
+      fwrite($fp, $linea . "\n");
+      fwrite($fp, $lineb . "\n");
+      fwrite($fp, "----------" . "\n");
       fclose($fp);
     }
 

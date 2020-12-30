@@ -29,11 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       case 'check':
         // URLを丸めてから渡す
         $postPath = $recordApp->checkURL($_POST['path']);
-        return $recordApp->recordCount($postPath);
+        $timewitha = $_POST['timewitha'];
+        $average = $_POST['average'];
+        $bunsan = $_POST['bunsan'];
+        return $recordApp->recordCount($timewitha,$average,$bunsan);
       case 'uncheck':
         // URLを丸めてから渡す
-        $postPath = $recordApp->checkURL($_POST['path']);
-        return $recordApp->recordUncheck($postPath);
+        // $postPath = $recordApp->checkURL($_POST['path']);
+        // return $recordApp->recordUncheck($postPath);
     }
   } catch (Exception $e) {
     header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
